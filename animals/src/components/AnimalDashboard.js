@@ -8,23 +8,26 @@ import {axiosAuth} from './utils/axiosAuth';
 export default function AnimalDashboard() {
     
     const [ animals, setAnimals ] = useState([]);
+    const [ dependency, setDependency ] = useState(fasle)
+
     useEffect(() => {
         axiosAuth()
         .get('animals')
         .then(res => {
             setAnimals(res.data)
+            setDependency(false)
         })
         .catch(err => {
             console.log(err.respose)
         })
-    }, [])
+    }, [dependency])
     
     // How can get fetch the data from the server when the component mounts?
     // How can we capture and set that data to state?
 
     return(
         <div className="dash">
-            <AnimalForm animals={animals} updateAnimals={setAnimals} />
+            <AnimalForm animals={animals} updateAnimals={setAnimals} setDependency={setDependency}/>
             <AnimalList animals={animals} />
         </div>
     )

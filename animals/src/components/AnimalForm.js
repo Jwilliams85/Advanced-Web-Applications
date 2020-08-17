@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-
+import { axiosAuth } from './utils/axiosAuth'
 const initialAnimal = {
     name: '',
     sound: '',
     classification: { species:'' }
 }
 
-export default function AnimalForm({animals, updateAnimals }) {
+export default function AnimalForm({animals, updateAnimals,setDependency }) {
 
     const [ updating, setUpdating ] = useState(false);
     const [animalToUpdate, setAnimalToUpdate] = useState(initialAnimal);
@@ -18,12 +18,27 @@ export default function AnimalForm({animals, updateAnimals }) {
 
     const saveUpdate = e => {
         e.preventDefault();
+        axiosAuth()
+        .put(`animals/${animalToUpdate.id}`, animalToUpdate)
+        .then(res =>{
+            console.log(res.data)
+            setDependency(true)
+        })
+        .catch(err => 
+            console.log(err))
         // How can we update the animal information?
         // Where can we get the ID? 
         // Where is the information stored?
+
     }
 
     const deleteAnimal = animal => {
+        axiosAuth()
+        .delete(`animals/${animalToUpdate.id}`, animal)
+        .then(res => {
+            console.log(res.data)
+            updateAnimals(animal.filter((item) => item.id !== animalToUpdate.id))
+        })
         // How can we delete an animal?
     }
 

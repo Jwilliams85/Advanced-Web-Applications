@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from 'axios'
-
 export default function Login(props) {
     const [login, setLogin] = useState({
         username: '',
@@ -14,7 +13,7 @@ export default function Login(props) {
         })
         console.log(login)
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         axios 
@@ -23,6 +22,8 @@ export default function Login(props) {
             console.log(res);
             window.localStorage.setItem('token', res.data.payload)
         })
+       props.history.push('/creatures')
+       
     }
     return (
         <div>
