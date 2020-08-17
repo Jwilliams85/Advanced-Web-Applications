@@ -26,9 +26,9 @@ const AddAnimal = (props) => {
 
     return(
         <div>
-        <form onSubmit={handleChanges}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name</label>
-            <input onChange={}
+            <input onChange={handleChanges}
                     type="text"
                     value={animal.name}
                     placeholder="name"

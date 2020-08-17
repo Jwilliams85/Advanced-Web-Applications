@@ -8,7 +8,7 @@ import {axiosAuth} from './utils/axiosAuth';
 export default function AnimalDashboard() {
     
     const [ animals, setAnimals ] = useState([]);
-    const [ dependency, setDependency ] = useState(fasle)
+    const [ dependency, setDependency ] = useState(false)
 
     useEffect(() => {
         axiosAuth()
@@ -18,7 +18,7 @@ export default function AnimalDashboard() {
             setDependency(false)
         })
         .catch(err => {
-            console.log(err.respose)
+            console.log(err.response)
         })
     }, [dependency])
     
